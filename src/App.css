@@ -1,24 +1,42 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  background-color: #1f1f1f;
+  height: auto;
+  width: 100%;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff1a00+0,ff5744+100 */
+  background: #ff1a00;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ff1a00 0%, #ff5744 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ff1a00 0%, #ff5744 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ff1a00 0%, #ff5744 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff1a00', endColorstr='#ff5744', GradientType=0);
+  /* IE6-9 */
   padding: 20px;
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+.file-drop {
+  background-color: #efefef;
+  margin: 20px auto 20px auto;
+  padding: 120px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  height: 55%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.file-drop img {
+  width: 10%;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
