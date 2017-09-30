@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Button from 'react-bootstrap/lib/Button';
 import Dropzone from 'react-dropzone';
 import FileInput from 'react-file-input';
+import axios from 'axios'
 import icon from './drag_drop_icon.svg';
 import './App.css';
 const componentClasses = ['file-drop'];
@@ -11,16 +11,35 @@ class App extends Component {
   // Handle file array for treatment
   handleSelectedFiles(files){
     for (var i = 0, len = files.length; i < len; i++) {
-      alert(files[i].name);
+        axios.post('http://localhost:8000/upload_file', {
+          pdf_file: files[i]
+        })
+        .then(function (response) {
+          alert(response);
+        })
+        .catch(function (error) {
+          alert(error);
+        });
     }
   }
 
   // Trigger when file is drag in da zone
   onDrop(acceptedFiles, rejectedFiles){
-    this.handleSelectedFiles(acceptedFiles);
+    var files = [];
+    acceptedFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          files.push(reader.result);
+        };
+        reader.onabort = () => console.log('file reading was aborted');
+        reader.onerror = () => console.log('file reading has failed');
+
+        reader.readAsBinaryString(file);
+    });
+    this.handleSelectedFiles(files);
   }
 
-  // Triggers when we click in the brows button
+  // Triggers when we click in the browse button
   catchFileSelected(event){
     var files = event.target.files;
     this.handleSelectedFiles(files);
