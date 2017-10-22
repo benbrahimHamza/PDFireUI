@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone';
 import FileInput from 'react-file-input';
 import icon from '../drag_drop_icon.svg';
 import axios from 'axios';
+import Notifications, {notify} from 'react-notify-toast';
 
 export default class MyDropZone extends React.Component {
     // Handle file array for treatment
@@ -15,10 +16,10 @@ export default class MyDropZone extends React.Component {
                 fileData: files[i]['fileData']
             })
             .then(function (response) {
-                console.log('Response ' + response);
+                notify.show(response);
             })
             .catch(function (error) {
-                console.log('Error ' + error);
+                notify.show('Malfunction: ' + error.message);
             });
         }
     }
@@ -45,15 +46,18 @@ export default class MyDropZone extends React.Component {
     render(){
         return(
             <div className="main container" accept='.pdf'>
+                <div>
+                    <Notifications/>
+                </div>
                 <Dropzone onDrop={this.onDrop.bind(this)} accept='application/pdf'>
                     <img src={icon} alt="Drag Here" />
                     <h3> Drag your file here </h3>
                     <p>
                         Or simply browse by clicking anywhere in the dotted zone !
-                    <p className="disclaimer">(*)Note the only PDF files are supported at the moment</p>
-                    <FileInput name="myImage"
-                        accept='application/pdf'
-                        onChange={this.catchFileSelected} />
+                        <p className="disclaimer">(*)Note the only PDF files are supported at the moment</p>
+                        <FileInput name="myImage"
+                            accept='application/pdf'
+                            onChange={this.catchFileSelected} />
                     </p>
                 </Dropzone>
             </div>

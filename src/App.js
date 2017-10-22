@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MyDropZone from './components/file_drop_zone';
-import NotificationSystem from 'react-notification-system';
 import './App.css';
 
 class App extends Component {
